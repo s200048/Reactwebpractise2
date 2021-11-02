@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 export const Button = styled(Link)`
   background: ${(props) => (props.primary ? "#000d1a" : "#CD853F")};
   white-space: nowrap;
-  outline: dashed red;
-  border: none;
   min-width: 100px;
   max-width: 200px;
   cursor: pointer;

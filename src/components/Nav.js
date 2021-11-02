@@ -3,12 +3,14 @@ import styled, { css } from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { menuData } from "../data/MenuData";
 import { Button } from "./Button";
+import { FaBars } from "react-icons/fa";
 
 const NavStyle = styled.nav`
   height: 10vh;
   background: lightblue;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 2rem;
   z-index: 100;
   width: 100%;
@@ -26,14 +28,29 @@ const NavLink = css`
 
 const Logo = styled(Link)`
   ${NavLink}
+  font-size: 30px;
   font-style: italic;
 `;
 
-const MenuBars = styled.i``;
+const MenuBars = styled(FaBars)`
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+  }
+`;
 
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
+  margin-right: -48px;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const NavMenuLinks = styled(Link)`
@@ -41,15 +58,19 @@ const NavMenuLinks = styled(Link)`
 `;
 
 const NavBtn = styled.div`
-  text-align: center;
-  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
-const Nav = () => {
+// eslint-disable-next-line react/prop-types
+const Nav = ({ toggle }) => {
   return (
     <NavStyle>
-      <Logo>Howard</Logo>
-      <MenuBars />
+      <Logo to="/">Howard.Co</Logo>
+      <MenuBars onClick={toggle} />
       <NavMenu>
         {menuData.map((item, index) => (
           <NavMenuLinks as={Link} to={item.link} key={index}>
