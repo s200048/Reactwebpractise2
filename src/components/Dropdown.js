@@ -53,18 +53,18 @@ const Dropbtn = styled.div``;
 // eslint-disable-next-line react/prop-types
 const Dropdown = ({ toggle, isOpen }) => {
   return (
-    <Dropdiv isOpen={isOpen} onClick={toggle}>
+    <Dropdiv isOpen={isOpen}>
       <Icon onClick={toggle}></Icon>
       <DropdownWrapper>
         <DropMenu>
           {menuData.map((item, index) => (
-            <NavLink as={Link} to={item.link} key={index}>
+            <NavLink as={Link} to={item.link} key={index} onClick={toggle}>
               {item.title}
             </NavLink>
           ))}
         </DropMenu>
         <Dropbtn>
-          <Button to="/contact" primary big>
+          <Button to="/contact" primary big onClick={toggle}>
             Contact Us
           </Button>
         </Dropbtn>

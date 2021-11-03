@@ -2,6 +2,8 @@ import Nav from "./components/Nav";
 import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Dropdown from "./components/Dropdown";
+import Hero from "./components/Hero";
+import { SliderData } from "./data/SliderData";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -27,9 +29,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <Nav toggle={toggle} />
+      <Hero slides={SliderData} />
       <Dropdown toggle={toggle} isOpen={isOpen} />
-      <Nav toggle={toggle} isOpen={isOpen} />
-
       <p>Next design:</p>
       <a href="https://www.youtube.com/watch?v=sKs9FiAHSN4&ab_channel=BrianDesign">
         This is the Link
