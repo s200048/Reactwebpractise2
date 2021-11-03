@@ -7,7 +7,7 @@ import { FaBars } from "react-icons/fa";
 
 const NavStyle = styled.nav`
   height: 10vh;
-  background: lightblue;
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,6 +15,8 @@ const NavStyle = styled.nav`
   z-index: 100;
   width: 100%;
 `;
+
+//  background: lightblue;
 
 const NavLink = css`
   display: flex;
@@ -24,6 +26,11 @@ const NavLink = css`
   cursor: pointer;
   text-decoration: none;
   color: #fff;
+  transition: 0.3s ease-in;
+
+  &:hover {
+    color: orange;
+  }
 `;
 
 const Logo = styled(Link)`
