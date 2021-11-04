@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
-import React, { useState, UseRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { css } from "styled-components/macro";
 import { Button } from "./Button";
 import { IoMdArrowRoundForward } from "react-icons/io";
@@ -130,16 +130,35 @@ const NextArrow = styled(IoArrowForward)`
 const Hero = ({ slides }) => {
   const [isSlide, setSlide] = useState(0);
   const length = slides.length;
-  // const timeout = useRef(null)
+  const timeout = useRef(null);
 
   const nextSlide = () => {
     setSlide(isSlide === length - 1 ? 0 : isSlide + 1);
-    console.log(isSlide);
   };
 
-  // let changeSlide = () => {
+  const PrevSlide = () => {
+    setSlide(isSlide === 0 ? length - 1 : isSlide - 1);
+  };
 
-  // }
+  useEffect(() => {
+    const autonextSlide = () => {
+      setSlide((isSlide) => (isSlide === length - 1 ? 0 : isSlide + 1));
+    };
+
+    timeout.current = setTimeout(autonextSlide, 2000);
+
+    return function () {
+      if (timeout.current) {
+        clearTimeout(timeout.isSlide);
+      }
+    };
+  }, [isSlide, length]);
+
+  // Check if slides is an array or not enought link
+
+  if (!Array.isArray(slides) || slides.length <= 0) {
+    return null;
+  }
 
   return (
     <HeroSection>
@@ -147,29 +166,31 @@ const Hero = ({ slides }) => {
         {slides.map((slide, index) => {
           return (
             <HeroSlide key={index}>
-              <HeroSlider>
-                <HeroImage src={slide.image} alt={slide.alt} />
-                <HeroContent>
-                  <h1>{slide.title}</h1>
-                  <p>{slide.price}</p>
-                  <Button
-                    to={slide.path}
-                    primary
-                    css={`
-                      display: inline-block;
-                      max-width: 160px;
-                    `}
-                  >
-                    {slide.label}
-                    <Arrow />
-                  </Button>
-                </HeroContent>
-              </HeroSlider>
+              {index === isSlide && (
+                <HeroSlider>
+                  <HeroImage src={slide.image} alt={slide.alt} />
+                  <HeroContent>
+                    <h1>{slide.title}</h1>
+                    <p>{slide.price}</p>
+                    <Button
+                      to={slide.path}
+                      primary
+                      css={`
+                        display: inline-block;
+                        max-width: 160px;
+                      `}
+                    >
+                      {slide.label}
+                      <Arrow />
+                    </Button>
+                  </HeroContent>
+                </HeroSlider>
+              )}
             </HeroSlide>
           );
         })}
         <SliderButtons>
-          <PrevArrow />
+          <PrevArrow onClick={PrevSlide} />
           <NextArrow onClick={nextSlide} />
         </SliderButtons>
       </HeroWrapper>
