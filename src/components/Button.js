@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Button = styled(Link)`
-  background: ${(props) => (props.primary ? "#000d1a" : "#CD853F")};
+  background: ${(props) => (props.primary ? "#fff" : "#CD853F")};
   white-space: nowrap;
   min-width: 100px;
   max-width: 200px;

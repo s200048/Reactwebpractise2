@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useRef, useEffect } from "react";
-import styled, { css } from "styled-components/macro";
+import styled, { css, keyframes } from "styled-components/macro";
 import { Button } from "./Button";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import { IoArrowForward, IoArrowBack } from "react-icons/io5";
+import "animate.css";
 
 const HeroSection = styled.section`
   height: 100vh;
@@ -57,6 +58,24 @@ const HeroSlider = styled.div`
   }
 `;
 
+const FadeInImg = keyframes`
+  0% {
+    opacity: 0.5;
+  }
+  50%{
+    opacity: 1;
+  }
+`;
+
+const FadeInText = keyframes`
+  0%{
+    transform: translateY(-50px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+`;
+
 const HeroImage = styled.img`
   position: absolute;
   top: 0;
@@ -64,7 +83,10 @@ const HeroImage = styled.img`
   width: 100vw;
   height: 100vh;
   object-fit: cover;
+  /* transition: 0.5s ease-in-out; */
+  animation: ${FadeInImg} 4s ease-in-out;
 `;
+
 const HeroContent = styled.div`
   position: relative;
   z-index: 10;
@@ -81,11 +103,13 @@ const HeroContent = styled.div`
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
     text-align: left;
     margin-bottom: 0.8rem;
+    animation: ${FadeInText} 1s ease-in-out;
   }
 
   p {
     margin-bottom: 1.2rem;
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    animation: ${FadeInText} 1s ease-in-out;
   }
 `;
 const Arrow = styled(IoMdArrowRoundForward)`
@@ -140,19 +164,21 @@ const Hero = ({ slides }) => {
     setSlide(isSlide === 0 ? length - 1 : isSlide - 1);
   };
 
+  // auto change slide
   useEffect(() => {
     const autonextSlide = () => {
       setSlide((isSlide) => (isSlide === length - 1 ? 0 : isSlide + 1));
     };
-
-    timeout.current = setTimeout(autonextSlide, 2000);
+    console.log(timeout.current);
+    timeout.current = setTimeout(autonextSlide, 6000);
 
     return function () {
       if (timeout.current) {
-        clearTimeout(timeout.isSlide);
+        console.log("clearnup");
+        clearTimeout(timeout.current);
       }
     };
-  }, [isSlide, length]);
+  });
 
   // Check if slides is an array or not enought link
 
@@ -178,6 +204,7 @@ const Hero = ({ slides }) => {
                       css={`
                         display: inline-block;
                         max-width: 160px;
+                        animation: ${FadeInText} 1s ease-in-out;
                       `}
                     >
                       {slide.label}
