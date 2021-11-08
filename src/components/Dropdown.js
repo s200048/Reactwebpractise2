@@ -13,13 +13,18 @@ const Dropdiv = styled.div`
   width: 100%;
   height: 100%;
   left: 0;
-  z-index: ${({ isOpen }) => (isOpen ? "1" : "-1")};
+  z-index: ${({ isOpen }) => (isOpen ? "99" : "-1")};
   transition: 0.3s ease-in-out;
   opacity: ${({ isOpen }) => (isOpen ? "1" : "0")};
   top: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s ease-in-out;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Icon = styled(VscChromeClose)`

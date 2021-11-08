@@ -154,7 +154,7 @@ const NextArrow = styled(IoArrowForward)`
 const Hero = ({ slides }) => {
   const [isSlide, setSlide] = useState(0);
   const length = slides.length;
-  const timeout = useRef(null);
+  // const timeout = useRef(null);
 
   const nextSlide = () => {
     setSlide(isSlide === length - 1 ? 0 : isSlide + 1);
@@ -165,20 +165,20 @@ const Hero = ({ slides }) => {
   };
 
   // auto change slide
-  useEffect(() => {
-    const autonextSlide = () => {
-      setSlide((isSlide) => (isSlide === length - 1 ? 0 : isSlide + 1));
-    };
-    console.log(timeout.current);
-    timeout.current = setTimeout(autonextSlide, 6000);
+  // useEffect(() => {
+  //   const autonextSlide = () => {
+  //     setSlide((isSlide) => (isSlide === length - 1 ? 0 : isSlide + 1));
+  //   };
+  //   console.log(timeout.current);
+  //   timeout.current = setTimeout(autonextSlide, 6000);
 
-    return function () {
-      if (timeout.current) {
-        console.log("clearnup");
-        clearTimeout(timeout.current);
-      }
-    };
-  });
+  //   return function () {
+  //     if (timeout.current) {
+  //       console.log("clearnup");
+  //       clearTimeout(timeout.current);
+  //     }
+  //   };
+  // });
 
   // Check if slides is an array or not enought link
 

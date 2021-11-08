@@ -12,7 +12,7 @@ const NavStyle = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  z-index: 100;
+  z-index: 98;
   width: 100%;
 `;
 
@@ -37,13 +37,20 @@ const Logo = styled(Link)`
   ${NavLink}
   font-size: 30px;
   font-style: italic;
+
+  @media screen and (max-width: 768px) {
+    display: ${({ isOpen }) => (isOpen ? "none" : "block")};
+    height: auto;
+    cursor: pointer;
+  }
 `;
 
 const MenuBars = styled(FaBars)`
   display: none;
 
   @media screen and (max-width: 768px) {
-    display: block;
+    display: ${({ isOpen }) => (isOpen ? "none" : "block")};
+    color: white;
     height: 30px;
     width: 30px;
     cursor: pointer;
@@ -73,11 +80,13 @@ const NavBtn = styled.div`
 `;
 
 // eslint-disable-next-line react/prop-types
-const Nav = ({ toggle }) => {
+const Nav = ({ toggle, isOpen }) => {
   return (
     <NavStyle>
-      <Logo to="/">Howard.Co</Logo>
-      <MenuBars onClick={toggle} />
+      <Logo to="/" isOpen={isOpen}>
+        Howard.Co
+      </Logo>
+      <MenuBars onClick={toggle} isOpen={isOpen} />
       <NavMenu>
         {menuData.map((item, index) => (
           <NavMenuLinks as={Link} to={item.link} key={index}>

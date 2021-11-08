@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Nav toggle={toggle} />
+      <Nav toggle={toggle} isOpen={isOpen} />
       <Dropdown toggle={toggle} isOpen={isOpen} />
       <Hero slides={SliderData} />
       <Info {...InfoData} />

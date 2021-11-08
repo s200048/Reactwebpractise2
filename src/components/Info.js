@@ -9,7 +9,7 @@ const InfoSection = styled.section`
   padding: 4rem 0rem;
 `;
 const Container = styled.div`
-  padding: 3rem calc((1--vw - 1300px) / 2);
+  padding: 3rem calc((1vw - 1300px) / 2);
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 800px;
@@ -25,7 +25,7 @@ const ColumnLeft = styled.div`
   align-items: flex-start;
   line-height: 1.4;
   padding: 1rem 2rem;
-  order: ${({ reverse }) => (reverse ? "2" : "1")};
+  /* order: ${({ reverse }) => (reverse ? "2" : "1")}; */
 
   h1 {
     margin-bottom: 1rem;
@@ -38,13 +38,13 @@ const ColumnLeft = styled.div`
 `;
 const ColumnRight = styled.div`
   padding: 1rem 2rem;
-  order: ${({ reverse }) => (reverse ? "1" : "2")};
+  /* order: ${({ reverse }) => (reverse ? "1" : "2")}; */
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media screen and (max-width: 768px) {
-    order: ${({ reverse }) => (reverse ? "2" : "1")};
+    /* order: ${({ reverse }) => (reverse ? "2" : "1")}; */
   }
 
   img {
