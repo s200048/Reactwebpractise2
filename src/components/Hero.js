@@ -3,8 +3,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { css, keyframes } from "styled-components/macro";
 import { Button } from "./Button";
-import { IoMdArrowRoundForward } from "react-icons/io";
-import { IoArrowForward, IoArrowBack } from "react-icons/io5";
+// import { IoMdArrowRoundForward } from "react-icons/io";
+import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import "animate.css";
 
 const HeroSection = styled.section`
@@ -49,12 +49,7 @@ const HeroSlider = styled.div`
     left: 0;
     overflow: hidden;
     opacity: 0.4;
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.2) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0.6) 100%
-    );
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.6) 100%);
   }
 `;
 
@@ -111,50 +106,59 @@ const HeroContent = styled.div`
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
     animation: ${FadeInText} 1s ease-in-out;
   }
+
+  a {
+    text-align: center;
+  }
 `;
-const Arrow = styled(IoMdArrowRoundForward)`
-  vertical-align: middle;
-  margin-left: 0.5rem;
-`;
+
+// const Arrow = styled(IoMdArrowRoundForward)`
+//   vertical-align: middle;
+//   margin-left: 0.5rem;
+// `;
 
 const arrowButtons = css`
   width: 50px;
   height: 50px;
   color: #fff;
   cursor: pointer;
-  background: #000d1a;
-  border-radius: 50px;
-  padding: 10px;
-  margin-right: 1rem;
   user-select: none;
   transition: 0.3s;
+  opacity: 0.5;
 
   &:hover {
-    background: #cd853f;
-    transform: scale(1.05);
+    color: #cd853f;
+    opacity: 1;
+    transform: scale(1.3);
   }
 `;
 
-const SliderButtons = styled.div`
+const SliderButtonsRight = styled.div`
   position: absolute;
-  bottom: 50px;
-  right: 50px;
+  right: 30px;
   display: flex;
   z-index: 10;
 `;
 
-const PrevArrow = styled(IoArrowBack)`
+const SliderButtonsLeft = styled.div`
+  position: absolute;
+  left: 30px;
+  display: flex;
+  z-index: 10;
+`;
+
+const PrevArrow = styled(MdArrowBackIos)`
   ${arrowButtons}
 `;
 
-const NextArrow = styled(IoArrowForward)`
+const NextArrow = styled(MdArrowForwardIos)`
   ${arrowButtons}
 `;
 
 const Hero = ({ slides }) => {
   const [isSlide, setSlide] = useState(0);
   const length = slides.length;
-  // const timeout = useRef(null);
+  const timeout = useRef(null);
 
   const nextSlide = () => {
     setSlide(isSlide === length - 1 ? 0 : isSlide + 1);
@@ -165,20 +169,20 @@ const Hero = ({ slides }) => {
   };
 
   // auto change slide
-  // useEffect(() => {
-  //   const autonextSlide = () => {
-  //     setSlide((isSlide) => (isSlide === length - 1 ? 0 : isSlide + 1));
-  //   };
-  //   console.log(timeout.current);
-  //   timeout.current = setTimeout(autonextSlide, 6000);
+  useEffect(() => {
+    const autonextSlide = () => {
+      setSlide((isSlide) => (isSlide === length - 1 ? 0 : isSlide + 1));
+    };
+    console.log(timeout.current);
+    timeout.current = setTimeout(autonextSlide, 3000);
 
-  //   return function () {
-  //     if (timeout.current) {
-  //       console.log("clearnup");
-  //       clearTimeout(timeout.current);
-  //     }
-  //   };
-  // });
+    return function () {
+      if (timeout.current) {
+        console.log("clearnup");
+        clearTimeout(timeout.current);
+      }
+    };
+  });
 
   // Check if slides is an array or not enought link
 
@@ -208,7 +212,6 @@ const Hero = ({ slides }) => {
                       `}
                     >
                       {slide.label}
-                      <Arrow />
                     </Button>
                   </HeroContent>
                 </HeroSlider>
@@ -216,10 +219,12 @@ const Hero = ({ slides }) => {
             </HeroSlide>
           );
         })}
-        <SliderButtons>
+        <SliderButtonsLeft>
           <PrevArrow onClick={PrevSlide} />
+        </SliderButtonsLeft>
+        <SliderButtonsRight>
           <NextArrow onClick={nextSlide} />
-        </SliderButtons>
+        </SliderButtonsRight>
       </HeroWrapper>
     </HeroSection>
   );

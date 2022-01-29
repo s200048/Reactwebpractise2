@@ -10,8 +10,9 @@ export const Button = styled(Link)`
   text-decoration: none;
   transition: 0.3s ease-in-out;
   padding: ${(props) => (props.big ? "16px 40px" : "14px 24px")};
-  color: ${(props) => (props.primary ? "palevioletred" : "#000d1a")};
-  font-size: ${(props) => (props.big ? "20px" : "14px")};
+  color: ${(props) => (props.primary ? "black" : "#000d1a")};
+  font-size: ${(props) => (props.big ? "30px" : "14px")};
+  font-weight: bolder;
 
   &:hover {
     transform: translateY(-5px);
