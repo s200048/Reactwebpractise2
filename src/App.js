@@ -1,11 +1,14 @@
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Dropdown from "./components/Dropdown";
-import Hero from "./components/Hero";
+import Hero from "./components/Hero/Hero";
 import { SliderData } from "./data/SliderData";
-import Info from "./components/Info";
-import { InfoData } from "./data/InfoData";
+import { BrowserRouter as Routes, Switch, Route } from "react-router-dom";
+import About from "./components/About";
+// import Info from "./components/Info";
+// import { InfoData } from "./data/InfoData";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -29,17 +32,20 @@ function App() {
   };
 
   return (
-    <>
+    <Routes>
       <GlobalStyle />
       <Nav toggle={toggle} isOpen={isOpen} />
       <Dropdown toggle={toggle} isOpen={isOpen} />
-      <Hero slides={SliderData} />
-      <Info {...InfoData} />
-      <p>Next design:</p>
-      <a href="https://www.youtube.com/watch?v=sKs9FiAHSN4&ab_channel=BrianDesign">
-        This is the Link
-      </a>
-    </>
+      <Switch>
+        <Route path="/" exact>
+          <Hero slides={SliderData} />
+        </Route>
+        <Route path="/about" exact component={About} />
+      </Switch>
+
+      <Footer />
+      {/* <Info {...InfoData} /> */}
+    </Routes>
   );
 }
 
