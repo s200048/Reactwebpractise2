@@ -1,6 +1,24 @@
-import styled, { css } from "styled-components/macro";
+import styled, { css, keyframes } from "styled-components/macro";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import "animate.css";
+// import "animate.css";
+
+const FadeInImg = keyframes`
+  0% {
+    opacity: 0.5;
+  }
+  50%{
+    opacity: 1;
+  }
+`;
+
+export const FadeInText = keyframes`
+  0%{
+    transform: translateY(-50px);
+  }
+  100%{
+    transform: translateY(0px);
+  }
+`;
 
 export const HeroSection = styled.section`
   height: 100vh;
@@ -56,6 +74,7 @@ export const HeroImage = styled.img`
   height: 100vh;
   object-fit: cover;
   /* transition: 0.5s ease-in-out; */
+  animation: ${FadeInImg} 4s ease-in-out;
 `;
 
 export const HeroContent = styled.div`
@@ -74,11 +93,13 @@ export const HeroContent = styled.div`
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
     text-align: left;
     margin-bottom: 0.8rem;
+    animation: ${FadeInText} 1s ease-in-out;
   }
 
   p {
     margin-bottom: 1.2rem;
     text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    animation: ${FadeInText} 1s ease-in-out;
   }
 
   a {

@@ -6,7 +6,7 @@ import { Button } from "../Button";
 import { HeroContent, HeroImage, HeroSection, HeroSlide, HeroSlider, HeroWrapper, NextArrow, PrevArrow, SliderButtonsLeft, SliderButtonsRight } from "./HeroStyles";
 // import { IoMdArrowRoundForward } from "react-icons/io";
 // import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-// import "animate.css";
+import "animate.css";
 
 const Hero = ({ slides }) => {
   const [isSlide, setSlide] = useState(0);
@@ -58,6 +58,7 @@ const Hero = ({ slides }) => {
                     <Button
                       to={slide.path}
                       primary
+                      animation
                       css={`
                         display: inline-block;
                         max-width: 160px;

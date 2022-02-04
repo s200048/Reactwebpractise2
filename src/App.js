@@ -1,12 +1,12 @@
 import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import React, { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import Dropdown from "./components/Dropdown";
 import Hero from "./components/Hero/Hero";
 import { SliderData } from "./data/SliderData";
 import { BrowserRouter as Routes, Switch, Route } from "react-router-dom";
-import About from "./components/About";
+// import About from "./components/About";
 // import Info from "./components/Info";
 // import { InfoData } from "./data/InfoData";
 
@@ -40,7 +40,7 @@ function App() {
         <Route path="/" exact>
           <Hero slides={SliderData} />
         </Route>
-        <Route path="/about" exact component={About} />
+        {/* <Route path="/about" exact component={About} /> */}
       </Switch>
 
       <Footer />

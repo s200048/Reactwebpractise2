@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FadeInText } from "./Hero/HeroStyles";
+import { css } from "styled-components/macro";
 
 export const Button = styled(Link)`
   background: ${(props) => (props.primary ? "#fff" : "#CD853F")};
@@ -13,6 +15,12 @@ export const Button = styled(Link)`
   color: ${(props) => (props.primary ? "black" : "#000d1a")};
   font-size: ${(props) => (props.big ? "30px" : "14px")};
   font-weight: bolder;
+  animation: ${(props) =>
+    props.animation
+      ? css`
+          ${FadeInText} 1s ease-in-out
+        `
+      : ""};
 
   &:hover {
     transform: translateY(-5px);
